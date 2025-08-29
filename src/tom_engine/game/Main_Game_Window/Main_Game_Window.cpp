@@ -519,9 +519,11 @@ void Main_Game_Window::Update() {
             }
             if (entered_office == false && battery_power > 0) {
                 // Bonnie
-                int random_move_value_bonnie = uid(rng);
-                if (bonnie.getLevel() >= random_move_value_bonnie) {
-                    night.moveAnimatronic(bonnie);
+                if (!(night.animatronicAtDoorCheck(bonnie, "Left Door"))) {
+                    int random_move_value_bonnie = uid(rng);
+                    if (bonnie.getLevel() >= random_move_value_bonnie) {
+                        night.moveAnimatronic(bonnie);
+                    }
                 }
 
                 // Foxy
@@ -537,28 +539,32 @@ void Main_Game_Window::Update() {
                 }
 
                 // Chica
-                int random_move_value_chica = uid(rng);
-                if (chica.getLevel() >= random_move_value_chica) {
-                    night.moveAnimatronic(chica);
+                if (!(night.animatronicAtDoorCheck(chica, "Right Door"))) {
+                    int random_move_value_chica = uid(rng);
+                    if (chica.getLevel() >= random_move_value_chica) {
+                        night.moveAnimatronic(chica);
+                    }
                 }
 
                 // Freddy
-                if (!(cam_mode == true && night.findAnimatronicCamName(freddy) == active_cam)) {
-                    int random_move_value_freddy = uid(rng);
-                    if (freddy.getLevel() >= random_move_value_freddy) {
-                        if (freddy.getMovingSongNumber() == 1) {
-                            freddy_moving_sound_buffer.loadFromFile("src/sound/Freddy_Moving_1.wav");
-                            freddy_moving_sound.setBuffer(freddy_moving_sound_buffer);
-                            freddy_moving_sound.play();
-                            freddy.setMovingSongNumber(2);
+                if (!(night.findAnimatronicCamName(freddy) == "Cam 4B")) {
+                    if (!(cam_mode == true && night.findAnimatronicCamName(freddy) == active_cam)) {
+                        int random_move_value_freddy = uid(rng);
+                        if (freddy.getLevel() >= random_move_value_freddy) {
+                            if (freddy.getMovingSongNumber() == 1) {
+                                freddy_moving_sound_buffer.loadFromFile("src/sound/Freddy_Moving_1.wav");
+                                freddy_moving_sound.setBuffer(freddy_moving_sound_buffer);
+                                freddy_moving_sound.play();
+                                freddy.setMovingSongNumber(2);
+                            }
+                            else if (freddy.getMovingSongNumber() == 2) {
+                                freddy_moving_sound_buffer.loadFromFile("src/sound/Freddy_Moving_2.wav");
+                                freddy_moving_sound.setBuffer(freddy_moving_sound_buffer);
+                                freddy_moving_sound.play();
+                                freddy.setMovingSongNumber(1);
+                            }
+                            night.moveAnimatronic(freddy);
                         }
-                        else if (freddy.getMovingSongNumber() == 2) {
-                            freddy_moving_sound_buffer.loadFromFile("src/sound/Freddy_Moving_2.wav");
-                            freddy_moving_sound.setBuffer(freddy_moving_sound_buffer);
-                            freddy_moving_sound.play();
-                            freddy.setMovingSongNumber(1);
-                        }
-                        night.moveAnimatronic(freddy);
                     }
                 }
             }
