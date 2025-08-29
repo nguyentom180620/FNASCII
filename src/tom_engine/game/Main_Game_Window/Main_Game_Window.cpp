@@ -475,41 +475,50 @@ void Main_Game_Window::Update() {
             foxy_jumpscare_counter++;
         }
         if (move_count == 5) {
+            std::uniform_int_distribution<int> uid(1,20);
             if (night.animatronicAtDoorCheck(bonnie, "Left Door")) {
-                if (getleftdoorClosed() == false) {
-                    night.enterOffice(bonnie);
-                    entered_office = true;
-                }
-                else {
-                    night.moveAnimatronic(bonnie);
-                    leaving_door_sound.setBuffer(leaving_door_sound_buffer);
-                    leaving_door_sound.play();
-                    bonnie_sound_playing = false;
+                int random_move_value_bonnie = uid(rng);
+                if (bonnie.getLevel() >= random_move_value_bonnie) {
+                    if (getleftdoorClosed() == false) {
+                        night.enterOffice(bonnie);
+                        entered_office = true;
+                    }
+                    else {
+                        night.moveAnimatronic(bonnie);
+                        leaving_door_sound.setBuffer(leaving_door_sound_buffer);
+                        leaving_door_sound.play();
+                        bonnie_sound_playing = false;
+                    }
                 }
             }
             if (night.animatronicAtDoorCheck(chica, "Right Door")) {
-                if (getrightdoorClosed() == false) {
-                    night.enterOffice(chica);
-                    entered_office = true;
-                }
-                else {
-                    night.moveAnimatronic(chica);
-                    leaving_door_sound.setBuffer(leaving_door_sound_buffer);
-                    leaving_door_sound.play();
-                    chica_sound_playing = false;
+                int random_move_value_chica = uid(rng);
+                if (chica.getLevel() >= random_move_value_chica) {
+                    if (getrightdoorClosed() == false) {
+                        night.enterOffice(chica);
+                        entered_office = true;
+                    }
+                    else {
+                        night.moveAnimatronic(chica);
+                        leaving_door_sound.setBuffer(leaving_door_sound_buffer);
+                        leaving_door_sound.play();
+                        chica_sound_playing = false;
+                    }
                 }
             }
             if (night.findAnimatronicCamName(freddy) == "Cam 4B") {
-                if (!(cam_mode == true && active_cam == "Cam 4B")) {
-                    if (getrightdoorClosed() == false) {
-                        night.enterOffice(freddy);
-                        entered_office = true;
+                int random_move_value_freddy = uid(rng);
+                if (freddy.getLevel() >= random_move_value_freddy) {
+                    if (!(cam_mode == true && active_cam == "Cam 4B")) {
+                        if (getrightdoorClosed() == false) {
+                            night.enterOffice(freddy);
+                            entered_office = true;
+                        }
                     }
                 }
             }
             if (entered_office == false && battery_power > 0) {
                 // Bonnie
-                std::uniform_int_distribution<int> uid(1,20);
                 int random_move_value_bonnie = uid(rng);
                 if (bonnie.getLevel() >= random_move_value_bonnie) {
                     night.moveAnimatronic(bonnie);
