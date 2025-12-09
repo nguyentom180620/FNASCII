@@ -509,7 +509,9 @@ void Main_Game_Window::Update() {
             if (night.findAnimatronicCamName(freddy) == "Cam 4B") {
                 int random_move_value_freddy = uid(rng);
                 if (freddy.getLevel() >= random_move_value_freddy) {
-                    if (!(cam_mode == true && active_cam == "Cam 4B")) {
+                    // Freddy only enters the office IF cams are up and the active cam is not on him
+                    // This creates balance: Freddy forces need cams down, Foxy forces need for cams up
+                    if (cam_mode == true && active_cam != "Cam 4B") {
                         if (getrightdoorClosed() == false) {
                             night.enterOffice(freddy);
                             entered_office = true;
@@ -547,24 +549,22 @@ void Main_Game_Window::Update() {
                 }
 
                 // Freddy
-                if (!(night.findAnimatronicCamName(freddy) == "Cam 4B")) {
-                    if (!(cam_mode == true && night.findAnimatronicCamName(freddy) == active_cam)) {
-                        int random_move_value_freddy = uid(rng);
-                        if (freddy.getLevel() >= random_move_value_freddy) {
-                            if (freddy.getMovingSongNumber() == 1) {
-                                freddy_moving_sound_buffer.loadFromFile("src/sound/Freddy_Moving_1.wav");
-                                freddy_moving_sound.setBuffer(freddy_moving_sound_buffer);
-                                freddy_moving_sound.play();
-                                freddy.setMovingSongNumber(2);
-                            }
-                            else if (freddy.getMovingSongNumber() == 2) {
-                                freddy_moving_sound_buffer.loadFromFile("src/sound/Freddy_Moving_2.wav");
-                                freddy_moving_sound.setBuffer(freddy_moving_sound_buffer);
-                                freddy_moving_sound.play();
-                                freddy.setMovingSongNumber(1);
-                            }
-                            night.moveAnimatronic(freddy);
+                if (!(cam_mode == true && night.findAnimatronicCamName(freddy) == active_cam)) {
+                    int random_move_value_freddy = uid(rng);
+                    if (freddy.getLevel() >= random_move_value_freddy) {
+                        if (freddy.getMovingSongNumber() == 1) {
+                            freddy_moving_sound_buffer.loadFromFile("src/sound/Freddy_Moving_1.wav");
+                            freddy_moving_sound.setBuffer(freddy_moving_sound_buffer);
+                            freddy_moving_sound.play();
+                            freddy.setMovingSongNumber(2);
                         }
+                        else if (freddy.getMovingSongNumber() == 2) {
+                            freddy_moving_sound_buffer.loadFromFile("src/sound/Freddy_Moving_2.wav");
+                            freddy_moving_sound.setBuffer(freddy_moving_sound_buffer);
+                            freddy_moving_sound.play();
+                            freddy.setMovingSongNumber(1);
+                        }
+                        night.moveAnimatronic(freddy);
                     }
                 }
             }
