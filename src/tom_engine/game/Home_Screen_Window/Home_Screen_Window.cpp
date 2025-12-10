@@ -28,6 +28,17 @@ Home_Screen_Window::Home_Screen_Window(int night_number, int stars) {
     title_sprite.setTexture(title_render_texture.getTexture());
     title_sprite.setPosition(40, 40);
 
+    version_text.setFont(text_font);
+    version_text.setString("Version 1.0");
+    version_text.setCharacterSize(20);
+    version_text.setFillColor(sf::Color::White);
+    version_render_texture.create(version_text.getLocalBounds().width, version_text.getLocalBounds().height+75);
+    version_render_texture.clear(sf::Color::Transparent);
+    version_render_texture.draw(version_text);
+    version_render_texture.display();
+    version_sprite.setTexture(version_render_texture.getTexture());
+    version_sprite.setPosition(20, 870);
+
     stars_texture.loadFromFile("src/graphics/white_star.png");
     stars_sprite.setTexture(stars_texture);
     stars_sprite.setScale(sf::Vector2f(0.5, 0.5));
@@ -128,6 +139,7 @@ void Home_Screen_Window::Draw() {
     home_screen.clear();
     home_screen.draw(freddy_sprite);
     home_screen.draw(title_sprite);
+    home_screen.draw(version_sprite);
     for (int i = 0; i < stars; i++) {
         stars_sprite.setPosition(40 + i*130, 200);
         home_screen.draw(stars_sprite);

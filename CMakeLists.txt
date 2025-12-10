@@ -10,7 +10,9 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main WIN32 src/main.cpp src/graphics/icon/resources.rc
+add_executable(main 
+        src/main.cpp 
+        src/graphics/icon/resources.rc
         src/map/Map.h
         src/map/Map.cpp
         src/animatronics/Base_Animatronic/Base_Animatronic.h
@@ -52,6 +54,8 @@ target_link_libraries(main PRIVATE sfml-graphics sfml-audio)
 target_compile_features(main PRIVATE cxx_std_17)
 
 if(WIN32)
+    target_sources(main PRIVATE src/graphics/icon/resources.rc)
+
     add_custom_command(
         TARGET main
         COMMENT "Copy OpenAL DLL"

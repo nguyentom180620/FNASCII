@@ -16,6 +16,10 @@ class Home_Screen_Window {
     sf::RenderTexture title_render_texture;
     sf::Sprite title_sprite;
 
+    sf::Text version_text;
+    sf::RenderTexture version_render_texture;
+    sf::Sprite version_sprite;
+
     sf::Texture stars_texture;
     sf::Sprite stars_sprite;
     int stars;

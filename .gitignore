@@ -1,6 +1,16 @@
-build
-out
-.cache
-.idea
-.vs
-.vscode
+# CMake and build artifacts
+build/
+cmake-build-debug/
+cmake-build-release/
+CMakeFiles/
+CMakeCache.txt
+install/
+Makefile
+*.o
+*.obj
+
+# Executables and Libraries
+*.exe
+main
+*.dll
+*.so
