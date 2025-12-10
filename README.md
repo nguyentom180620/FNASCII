@@ -1,5 +1,7 @@
 # FNASCII
 
+![FNASCII Freddy Face](src/graphics/Freddy_Face.png)
+
 FNASCII is a Five Nights at Freddy's (FNAF) demake that uses ASCII-based art.  
 It was built from the ground-up, being great as an exercise for reverse-engineering how FNAF works.
 
