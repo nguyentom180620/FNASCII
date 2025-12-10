@@ -73,7 +73,7 @@ Beating Custom Night will earn the final star, and the game is considered 100%.
 The player data is saved in *src/savefiles/fnascii_player_data.txt*, where the first number is the number of nights from 1 to 5 the player has beat and the second is the number of stars earned.
 The default values should therefore be:
 
-> 1
+> 1  
 > 0
 
 As be default the player starts on Night 1, with 0 stars earned.
