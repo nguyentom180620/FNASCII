@@ -5,7 +5,7 @@
 FNASCII is a Five Nights at Freddy's (FNAF) demake that uses ASCII-based art.  
 It was built from the ground-up, being great as an exercise for reverse-engineering how FNAF works.
 
-To play the game from downloading a zip file, the project is avaliabled on my itch.io page:  
+To play the game from downloading a zip file, the project is avaliable on my itch.io page:  
   
 [FNASCII](https://folixangel.itch.io/fnascii)
 
@@ -60,7 +60,8 @@ After that, you can click the hammer to build the project. Finally, you can run 
 
 ## Usage
 
-The game is point and click. In the office, the left and right doors work identically. You can left click the buttons to toggle doors and lights. 
+The game is point and click. You can exit the game at any time by pressing Esc.  
+In the office, the left and right doors work identically. You can left click the buttons to toggle doors and lights. 
 Optionally, you can also left click the door directly to toggle it, and you can right click the door to turn the lights on and off quickly.
 The camera console can be pulled up by left clicking the bar at the bottom of the screen. Then, cameras can be selected on the right side.
 UI for the battery, battery usage, and time are always at the top of the screen.
